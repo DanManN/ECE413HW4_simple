@@ -54,21 +54,26 @@ LFO_rate=0.5;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Question 1 - Compressor
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-threshold = 0.1; 
-attack = 0.2;
-avg_len = 5000;
-slope = 0.5;
-[output,gain]=compressor(constants,saxSound,threshold,slope,avg_len);
+threshold = 0.05; 
+attack = 0.005;
+avg_len = 1024*4;
+slope = 0.3; 
+[output,gain]=compressor(constants,saxSound,threshold,slope,attack,avg_len);
 
 soundsc(saxSound,constants.fs)
 disp('Playing the Compressor input')
+pause
 soundsc(output,constants.fs)
 disp('Playing the Compressor Output');
+pause
 %audiowrite(output,fss,'output_compressor.wav');
 
 % PLOTS for Question 1d
-
-% TODO: Add code to complete plots
+plot(10*log10(gain))
+title('Gain through Time')
+xlabel('time (samples)')
+ylabel('Gain (dB)')
+axis tight
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Question 2 - Ring Modulator
@@ -86,6 +91,7 @@ disp('Playing the RingMod input')
 pause
 soundsc(output,constants.fs)
 disp('Playing the RingMod Output');
+pause
 %audiowrite(output,fsg,'output_ringmod.wav');
 
 
