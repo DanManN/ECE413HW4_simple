@@ -68,10 +68,19 @@ disp('Playing the Compressor Output');
 pause
 %audiowrite(output,fss,'output_compressor.wav');
 
-% PLOTS for Question 1d
-plot(10*log10(gain))
-title('Gain through Time')
-xlabel('time (samples)')
+%% PLOTS for Question 1d
+t = linspace(0,length(output)/constants.fs,length(output));
+figure
+subplot(2,1,1)
+plot(t(1:length(saxSound)),saxSound,'b',t,output,'r')
+title('Sax Sound (before=blue, after=red)')
+xlabel('time (sec)')
+ylabel('Amplitude')
+axis tight
+subplot(2,1,2)
+t = linspace(0,length(output)/constants.fs,length(gain));
+plot(t,10*log10(gain))
+xlabel('time (sec)')
 ylabel('Gain (dB)')
 axis tight
 
