@@ -115,10 +115,12 @@ lag = constants.fs/4;
 depth = 0.9;
 [output]=tremolo(constants,pianoSound,LFO_type,LFO_rate,lag,depth);
 
-soundsc(pianoSound,constants.fs)
-disp('Playing the Tremolo input')
+%soundsc(pianoSound,constants.fs)
+%disp('Playing the Tremolo input')
+%pause
 soundsc(output,constants.fs)
 disp('Playing the Tremolo Output');
+pause
 %audiowrite(output,fsg,'output_tremelo.wav');
 
 
