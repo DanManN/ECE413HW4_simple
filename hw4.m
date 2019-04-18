@@ -168,8 +168,10 @@ feedback = 0;
 
 soundsc(inSound,constants.fs)
 disp('Playing the Slapback input')
+pause
 soundsc(output,constants.fs)
 disp('Playing the Slapback Output');
+pause
 %audiowrite(output,fsag,'output_slapback.wav');
 
 
@@ -182,8 +184,10 @@ feedback = 0.7;
 
 soundsc(inSound,constants.fs)
 disp('Playing the cavern input')
+pause
 soundsc(output,constants.fs)
 disp('Playing the cavern Output');
+pause
 %audiowrite(output,fsh,'output_cave.wav');
 
 
@@ -196,8 +200,10 @@ feedback = 1;
 
 soundsc(inSound,constants.fs)
 disp('Playing the delayed on the beat input')
+pause
 soundsc(output,constants.fs)
 disp('Playing the delayed on the beat Output');
+pause
 %audiowrite(output,fsg,'output_beatdelay.wav');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
