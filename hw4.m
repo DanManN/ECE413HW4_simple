@@ -115,9 +115,9 @@ lag = constants.fs/4;
 depth = 0.9;
 [output]=tremolo(constants,pianoSound,LFO_type,LFO_rate,lag,depth);
 
-%soundsc(pianoSound,constants.fs)
-%disp('Playing the Tremolo input')
-%pause
+soundsc(pianoSound,constants.fs)
+disp('Playing the Tremolo input')
+pause
 soundsc(output,constants.fs)
 disp('Playing the Tremolo Output');
 pause
@@ -128,24 +128,32 @@ pause
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Question 4 - Distortion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-gain = 20;
+gain = 30;
 inSound = cleanGuitarSound(:,1);
 tone = 0.5;
 [output]=distortion(constants,inSound,gain,tone);
 
 soundsc(inSound,constants.fs)
 disp('Playing the Distortion input')
+pause
 soundsc(output,constants.fs)
 disp('Playing the Distortion Output');
+pause
 %audiowrite(output,fsag,'output_distortion.wav');
 
-% look at what distortion does to the spectrum
+%% look at what distortion does to the spectrum
 L = 10000;
 n = 1:L;
 sinSound = sin(2*pi*440*(n/fsag));
 [output]=distortion(constants,sinSound,gain,tone);
 
-% TODO: Add some Sample code to demonstrate the spectrum 
+figure
+subplot(2,1,1)
+spectrogram(sinSound)
+title('Pure Sin Tone')
+subplot(2,1,2)
+spectrogram(output)
+title('Distortion')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Question 5 - Delay
