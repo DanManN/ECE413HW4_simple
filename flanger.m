@@ -1,4 +1,4 @@
-function [soundOut]=flanger(constants,inSound,depth,delay,width,LFO_Rate)
+function [output]=flanger(constants,inSound,depth,delay,width,LFO_Rate)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FUNCTION
 %    [soundOut]=flanger(constants,inSound,depth,delay,width,LFO_Rate)
@@ -17,3 +17,10 @@ function [soundOut]=flanger(constants,inSound,depth,delay,width,LFO_Rate)
 %   LFO_Rate    = The frequency of the Low Frequency oscillator in Hz
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+output = zeros(size(inSound));
+delay_time = (delay+0.5*width*(cos(2*pi*LFO_Rate*(1:length(inSound))/constants.fs)+1))*constants.fs;
+for s = (1+(delay+width)*constants.fs):length(inSound)
+    output(floor(s)) = ...
+        inSound(floor(s)) + ...
+        inSound(floor(s-delay_time(floor(s))))*depth;
+end

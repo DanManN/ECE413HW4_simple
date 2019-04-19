@@ -128,7 +128,7 @@ pause
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Question 4 - Distortion
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-gain = 30;
+gain = 20;
 inSound = cleanGuitarSound(:,1);
 tone = 0.5;
 [output]=distortion(constants,inSound,gain,tone);
@@ -175,7 +175,7 @@ pause
 %audiowrite(output,fsag,'output_slapback.wav');
 
 
-% cavern echo settings
+%% cavern echo settings
 inSound = pianoSound;
 delay_time = 0.4;
 depth = 0.8;
@@ -191,9 +191,9 @@ pause
 %audiowrite(output,fsh,'output_cave.wav');
 
 
-% delay (to the beat) settings
+%% delay (to the beat) settings
 inSound = pianoSound;
-delay_time = 0.18;
+delay_time = 0.30;
 depth = 1;
 feedback = 1;
 [output]=delay(constants,inSound,depth,delay_time,feedback);
@@ -209,8 +209,10 @@ pause
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Question 6 - Flanger
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-inSound = drumSound;
-constants.fs = fsd;
+%inSound = drumSound;
+%constants.fs = fsd;
+inSound = pianoSound(:,1);
+constants.fs = fsg;
 depth = 0.8;
 delay = .001;   
 width = .002;   
@@ -219,8 +221,10 @@ LFO_Rate = 0.5;
 
 soundsc(inSound,constants.fs)
 disp('Playing the Flanger input')
+pause
 soundsc(output,constants.fs)
 disp('Playing the Flanger Output');
+pause
 %audiowrite(output,fsd,'output_flanger.wav');
 
 
@@ -238,8 +242,10 @@ LFO_Rate = 0.5; % irrelevant if width = 0
 
 soundsc(inSound,constants.fs)
 disp('Playing the Chorus input')
+pause
 soundsc(output,constants.fs)
 disp('Playing the Chorus Output');
+pause
 %audiowrite(output,fsg,'output_chorus.wav');
 
 
